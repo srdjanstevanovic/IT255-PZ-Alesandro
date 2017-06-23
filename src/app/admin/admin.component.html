@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Admin
+                        <small>Panel</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a [routerLink]="['/']">Početna</a>
+                        </li>
+                        <li class="active">Admin</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div *ngIf="products" class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Šifra</th>
+                        <th>Artikal</th>
+                        <th>Broj elemenata</th>
+                        <th>Tip</th>
+                        <th>Cena</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let product of products">
+                    <tr *ngIf="!product.isAdded"
+                        [ngClass]="{'is-active': product.isAdded}">
+                        <td>{{product.code}}</td>
+                        <td>{{product.name}}</td>
+                        <td>
+                            {{product.elements_number}}
+                            <!--<select [(ngModel)]="product.elements_number" [value]="product.elements_number">-->
+                            <!--<option *ngFor="let element of elements_number" [value]="element.number">-->
+                            <!--{{element.number}}-->
+                            <!--</option>-->
+                            <!--</select>-->
+                        </td>
+                        <td *ngIf="product.type_id == '1'">
+                            Box
+                            <!--<select [(ngModel)]="product.type" [value]="product.type_id">-->
+                            <!--<option *ngFor="let type of types" [value]="type.id">-->
+                            <!--{{type.name}}-->
+                            <!--</option>-->
+                            <!--</select>-->
+                        </td>
+                        <td *ngIf="product.type_id == '2'">
+                            Mreža
+                        </td>
+                        <td>{{product.price}}</td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="product.isAdded = !product.isAdded; remove(this.product.product_id)">
+                                Obriši
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <!--<button class="btn btn-primary" (click)="add()">Dodaj</button>-->
+            </div>
+
+
+        </div>
+    </div>
+</div>

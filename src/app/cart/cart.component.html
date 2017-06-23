@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 class="page-header">Korpa
+                        <small>Veleprodaja</small>
+                    </h1>
+                    <ol class="breadcrumb">
+                        <li><a [routerLink]="['/']">Početna</a>
+                        </li>
+                        <li class="active">Korpa</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div *ngIf="cart" class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Šifra</th>
+                        <th>Artikal</th>
+                        <th>Broj elemenata</th>
+                        <th>Tip</th>
+                        <th>Cena</th>
+                        <th>Količina</th>
+                        <th>Ukupna cena</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody *ngFor="let product of cart">
+                    <tr *ngIf="!product.isAdded"
+                        [ngClass]="{'is-active': product.isAdded}">
+                        <td>{{product.code}}</td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.elements_number}}</td>
+                        <td>{{product.type}}</td>
+                        <td>{{product.price}}</td>
+                        <td>
+                            <select [(ngModel)]="product.quantity" [value]="product.quantity"
+                                    (click)="update(product.product_id, product.quantity)">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="500">500</option>
+
+                            </select>
+                        </td>
+                        <td>{{product.price * product.quantity}}</td>
+                        <td>
+                            <button class="btn btn-danger"
+                                    (click)="product.isAdded = !product.isAdded; remove(this.product.product_id)">
+                                Obriši
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>Ukupna cena: <span [innerHTML]="getTotal()"></span></p>
+                <button [disabled]="isDone" class="btn btn-primary" (click)="checkout()">Kupi</button>
+                <p *ngIf="isDone" class="alert alert-success">Porudžbina je poslata.</p>
+            </div>
+        </div>
+    </div>
+</div>

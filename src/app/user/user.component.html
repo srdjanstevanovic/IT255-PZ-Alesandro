@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3" id="loginModal" *ngIf="!token">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h2>Moj nalog</h2>
+            </div>
+            <div class="modal-body">
+                <div class="well">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#login" data-toggle="tab">Uloguj se</a></li>
+                        <li><a href="#create" data-toggle="tab">Napravi nalog</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
+                        <div class="tab-pane active in" id="login">
+                            <app-login></app-login>
+                        </div>
+                        <div class="tab-pane fade" id="create">
+                            <app-register></app-register>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

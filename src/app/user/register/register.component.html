@@ -1,0 +1,65 @@
+<script src="../user.service.ts"></script>
+<form style="margin-top: 2vh;" name="form" (ngSubmit)="f.form.valid && register()"
+      #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !mail.valid }">
+        <label for="mail2">Mejl adresa</label>
+        <input id="mail2" type="text" class="form-control" name="mail"
+               [(ngModel)]="model.mail" #mail="ngModel"
+               required/>
+        <div *ngIf="f.submitted && !mail.valid" class="help-block">Mejl adresa je obavezna.
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !address.valid }">
+        <label for="address">Adresa</label>
+        <input id="address" type="text" class="form-control" name="address"
+               [(ngModel)]="model.address"
+               #address="ngModel"
+               required/>
+        <div *ngIf="f.submitted && !address.valid" class="help-block">Adresa je obavezna.
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !city_id.valid }">
+        <label for="city_id" class="control-label">Grad</label>
+        <div id="city_id" class="selectContainer">
+            <select class="form-control" name="size" [(ngModel)]="model.city_id"
+                    #city_id="ngModel"
+                    required>
+                <option *ngFor="let city of cities" [value]="city.id">
+                    {{city.name}}
+                </option>
+            </select>
+        </div>
+        <div *ngIf="f.submitted && !city_id.valid" class="help-block">Grad je obavezan.
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !tin.valid }">
+        <label for="tin">PIB</label>
+        <input id="tin" type="tin" class="form-control" name="tin"
+               [(ngModel)]="model.tin"
+               #tin="ngModel"
+               required minlength="9"/>
+        <div *ngIf="f.submitted && !tin.valid" class="help-block">PIB mora da sadrži
+            minimum 9 karaktera.
+        </div>
+    </div>
+
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password"
+               [(ngModel)]="model.password"
+               #password="ngModel"
+               required minlength="8"/>
+        <div *ngIf="f.submitted && !password.valid" class="help-block">
+            Lozinka mora da sadrži minimum 8 karaktera.
+        </div>
+    </div>
+    <div></div>
+    <div class="form-group">
+        <button [disabled]="registered" class="btn btn-success">
+            Register
+        </button>
+    </div>
+</form>

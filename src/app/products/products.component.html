@@ -1,0 +1,52 @@
+<!-- Page Content -->
+<script src="product/product.component.ts"></script>
+<script src="../app.module.ts"></script>
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Kockaline
+                <small>Veleprodaja</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a [routerLink]="['/']">Početna</a>
+                </li>
+                <li class="active">Kockaline</li>
+                <p>Krupne kocke, zaobljenih ivica, veselih pastelnih boja, lako se sklapaju.
+                    Kockaline kroz igru pomažu razvoju psihofizičkih osobina, sposobnosti veština dece predškolskog uzrasta.
+                    Pomažu deci da razviju motoriku ,opažanje I kreativnost. Proizvod poseduje sertifikat o zdravstvenoj ispravnosti kao I materijalu koji se koristi za izradu kockica.</p>
+            </ol>
+
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="col-lg-12"></div>
+    <!-- Project One -->
+    <div class="row mb-10" *ngFor=" let product of products"
+         [ngClass]="{'is-active': product.isAdded}">
+        <div class="col-md-7">
+            <a [routerLink]="['/kockaline', product.id]">
+                <img class="img-responsive img-hover" [src]="product.image" style="width: 50%">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h3><a [routerLink]="['/kockaline', product.id]">{{product.name}}</a></h3>
+            <h4>Cena: {{product.price}},00 rsd</h4>
+            <p>Broj elemenata: {{product.elements_number}}</p>
+            <p *ngIf="product.type_id == '1'">Tip: Box</p>
+            <p *ngIf="product.type_id == '2'">Tip: Mreža</p>
+            <button type="button" *ngIf="!product.isAdded" class="btn btn-primary"
+                    (click)="product.isAdded = !product.isAdded; addToCart(product.id)">Dodaj u
+                korpu
+            </button>
+            <button type="button" [disabled]="product.isAdded" *ngIf="product.isAdded" class="btn btn-success"
+                    (click)="product.isAdded = !product.isAdded">Dodato
+            </button>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <hr>
+    <hr>
+</div>

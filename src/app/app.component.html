@@ -1,0 +1,71 @@
+<script src="app.component.ts"></script>
+<script src="home/home.component.ts"></script>
+<div class="wrapper">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" [routerLink]="['']">
+                    <img class="logo" src="../assets/img/logo.png" alt="">
+                </a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a [routerLink]="['']">Početna</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/kockaline']">Kockaline</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/galerija']">Galerija</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/o-nama']">O nama</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/kontakt']">Kontakt</a>
+                    </li>
+                    <li *ngIf="!token">
+                        <a [routerLink]="['/nalog']">Moj nalog</a>
+                    </li>
+                    <li *ngIf="token && token.role_name == 'admin'">
+                        <a [routerLink]="['/admin']">Admin</a>
+                    </li>
+                    <li *ngIf="token">
+                        <a [routerLink]="['/korpa']">Korpa</a>
+                    </li>
+                    <li *ngIf="token">
+                        <a (click)="logout()" [routerLink]="['/']">Odjavi se</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="full-height">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <footer class="container text-center">
+
+        <div class="copyrights" style="margin-top:25px;">
+            <p> +381 (0) 15 889 798, Gimnazijska 9, Loznica; +381 (15) 892 490 Gučevska 120, Banja Koviljača 08:00 -
+                20:00 alesandroforkids@hotmail.com</p>
+            <p>ALESANDRO DOO © 2017 Sva prava zadržana
+                <br>
+                <span></span></p>
+        </div>
+    </footer>
+</div>

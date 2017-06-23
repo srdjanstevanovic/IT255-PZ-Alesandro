@@ -1,0 +1,40 @@
+
+.fa {
+    padding: 25px;
+    font-size: 40px;
+    width: 100px;
+
+    text-align: center;
+    text-decoration: none;
+}
+
+
+.fa:hover {
+    opacity: 2.0;
+}
+
+
+.fa-facebook {
+    color:#0f4bf2;
+}
+
+.fa-twitter {
+    color:cyan;
+}
+
+.fa-youtube {
+    color:red;
+}
+
+.fa-linkedin {
+    color: #3e7dbd;
+}
+
+.fa-instagram {
+    color:#e0da16;
+}
+.social-icons {
+    padding: 20px;
+    font-size: 27px;
+    color: black;
+}
